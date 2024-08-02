@@ -1,0 +1,22 @@
+function findSubsetSum(arr, targetSum):
+    result = []
+    currentSubset = []
+    backtrack(arr, targetSum, 0, currentSubset, result)
+    return result
+
+function backtrack(arr, targetSum, currentIndex, currentSubset, result):
+
+    if targetSum == 0:
+        result.add(currentSubset.copy())
+        return
+    
+
+    for i from currentIndex to len(arr) - 1:
+
+        if arr[i] <= targetSum:
+
+            currentSubset.add(arr[i])
+
+            backtrack(arr, targetSum - arr[i], i + 1, currentSubset, result)
+
+            currentSubset.removeLast()
